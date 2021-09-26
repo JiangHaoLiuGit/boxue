@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>双色球中奖号码</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            border: none;
+        }
+        body{
+            margin-top: 200px;
+        }
+        .self,.selfs{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .self.active,.selfs.active{
+            display: none;
+        }
+        .self span,.selfs span{
+            display: block;
+            width: 38px;
+            height: 38px;
+            line-height: 38px;
+            color: #f54646;
+            border: 1px solid #f54646;
+            border-radius: 50%;
+            margin-right: 20px;
+            font-size: 20px;
+            text-align: center;
+        }
+        .self span.active,.selfs span.active{
+            color: #39f;
+            border-color: #39f;
+        }
+        .div{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px auto;
+        }
+        .btn{
+            white-space: nowrap;
+            cursor: pointer;
+            color: #fff;
+            background: linear-gradient(to right, #ff9569 0%, #e92758 100%);
+            border: 1px solid #dcdfe6;
+            -webkit-appearance: none;
+            text-align: center;
+            box-sizing: border-box;
+            outline: none;
+            margin: 0;
+            transition: .1s;
+            width: 150px;
+            height: 40px;
+            border-radius: 20px;
+            line-height: 36px;
+            
+        }
+        .btn.second{
+            width: 200px;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="div">
+        <div class="btn" onclick="btnFirst()">今日双色球开奖</div>
+        <div class="btn second" onclick="btnSecond()">今日双色球开奖(五次)</div>
+    </div>
+    <div class="self">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span class="active"></span>
+    </div>
+    <div class="selfs active">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span class="active"></span>
+    </div>
+    <div class="selfs active">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span class="active"></span>
+    </div>
+    <div class="selfs active">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span class="active"></span>
+    </div>
+    <div class="selfs active">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span class="active"></span>
+    </div>
+    <div class="selfs active">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span class="active"></span>
+    </div>
+    
+    <script>
+
+        //抓元素
+        let block = document.getElementsByClassName("self")[0]
+        let blockSecond = document.getElementsByClassName("selfs")
+
+        //生成随机数函数
+        function newSuiJi(n){
+            return parseInt(Math.random()*n,10)+1
+        }
+
+        //初始赋值
+        for(let i = 0 ; i < block.children.length ; i ++){
+            block.children[i].textContent = 0
+        }
+        for(let j = 0 ; j < blockSecond.length ; j ++){
+            for(let i = 0 ; i < blockSecond[j].children.length ; i ++){
+                
+                blockSecond[j].children[i].textContent = 0
+            }
+        }
+
+        //点击生成一个
+        function btnFirst(){
+            //显示隐藏
+            for(let j = 0 ; j < blockSecond.length ; j ++){
+                blockSecond[j].className = "selfs active"
+            }
+            block.className = "self"
+            //赋值
+            for(let i = 0 ; i < block.children.length ; i ++){
+                
+                if(block.children[i].className != 'active'){
+                    block.children[i].textContent = newSuiJi(33)
+                }else{
+                    block.children[i].textContent = newSuiJi(16)
+                }
+            }
+        }
+
+        //点击生成五个
+        function btnSecond(){
+            //显示隐藏
+            block.className = "self active"
+            for(let j = 0 ; j < blockSecond.length ; j ++){
+                blockSecond[j].className = "selfs"
+            }
+            //赋值
+            for(let j = 0 ; j < blockSecond.length ; j ++){
+                for(let i = 0 ; i < blockSecond[j].children.length ; i ++){
+                    if(blockSecond[j].children[i].className != "active"){
+                        blockSecond[j].children[i].textContent = newSuiJi(33)
+                    }else{
+                        blockSecond[j].children[i].textContent = newSuiJi(16)
+                    }
+                }
+            }
+        }
+        
+    </script>
+</body>
+</html>
